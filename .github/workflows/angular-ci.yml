@@ -8,7 +8,7 @@ on:
 
 jobs:
   ci: # Declare our ci job
-    name: Run linters
+    name: Run CI steps
     runs-on: ubuntu-latest # Choose our environment
     steps:
       - uses: actions/checkout@v2 # Checkout the commit
