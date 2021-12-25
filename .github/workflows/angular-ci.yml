@@ -1,0 +1,22 @@
+name: Angular CI # Name of the workflow
+
+on:
+  push: # Triggered on push
+    branches: [ main ] # Branches that should trigger the workflow on push
+  pull_request: # Triggered on PR
+    branches: [ main ] # Branches that should trigger the workflow on PR
+
+jobs:
+  lint: # Declare our lint job
+    name: Run linters
+    runs-on: ubuntu-latest # Choose our environment
+    steps:
+      - uses: actions/checkout@v2 # Checkout the commit
+      - name: Use Node.js 14
+          uses: actions/setup-node@v2
+          with:
+            node-version: '14' # Specify node version
+            cache: 'npm' # Specicy package manager
+            cache-dependency-path: package-lock.json # Path to our lock file
+      - run: npm ci # Install dependencies
+      - run: npm run lint # Make sure all file are properly formatted
