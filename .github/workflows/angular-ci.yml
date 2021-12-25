@@ -20,3 +20,18 @@ jobs:
           cache-dependency-path: package-lock.json # Path to our lock file
       - run: npm ci # Install dependencies
       - run: npm run lint # Make sure all file are properly formatted
+
+  tests: # Declare our test job
+    name: Run tests
+    runs-on: ubuntu-latest # Choose our environment
+    needs: lint # Run only if lint passed
+    steps:
+      - uses: actions/checkout@v2 # Checkout the commit
+      - name: Use Node.js 14
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14' # Specify node version
+          cache: 'npm' # Specify package manager
+          cache-dependency-path: package-lock.json # Path to our lock file
+      - run: npm ci # Install dependencies
+      - run: npm run test # Run our tests
