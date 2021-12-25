@@ -16,7 +16,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '14' # Specify node version
-          cache: 'npm' # Specicy package manager
+          cache: 'npm' # Specify package manager
           cache-dependency-path: package-lock.json # Path to our lock file
       - run: npm ci # Install dependencies
       - run: npm run lint # Make sure all file are properly formatted
